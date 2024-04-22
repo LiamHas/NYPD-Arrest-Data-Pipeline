@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="nypd_arrest_dw_lgl" id="LogicalDesign-2c8" database="LogicalDesign" >
+	<schema name="INSTANCE" catalogname="nypd_arrest_dw_lgl" >
+		<table name="dim_arrest" prior="Entity" >
+			<column name="arrestID" type="BIGINT" jt="-5" />
+			<column name="offenseCategory" type="VARCHAR" jt="12" />
+			<column name="offenseDescription" type="VARCHAR" jt="12" />
+			<column name="offenseLevel" type="CHAR" length="1" jt="1" />
+			<column name="arrestPrecinct" type="INT" jt="4" />
+			<index name="pk_arrestID" unique="UNIQUE_KEY" >
+				<column name="arrestID" />
+			</index>
+		</table>
+		<table name="dim_date" prior="Entity" >
+			<column name="date_id" type="BIGINT" jt="-5" mandatory="y" />
+			<column name="year" type="INT" jt="4" />
+			<column name="quarter" type="INT" jt="4" />
+			<column name="monthNumber" type="INT" jt="4" />
+			<column name="monthName" type="VARCHAR" length="100" jt="12" />
+			<column name="weekOfMonth" type="INT" jt="4" />
+			<column name="weekOfYear" type="INT" jt="4" />
+			<column name="dayName" prior="dayname" type="VARCHAR" length="100" jt="12" />
+			<column name="dayNumber" prior="daynumber" type="INT" jt="4" />
+			<column name="dateIsoformat" type="DATETIME" jt="93" />
+			<index name="pk_dim_date" unique="PRIMARY_KEY" >
+				<column name="date_id" />
+			</index>
+		</table>
+		<table name="dim_location" prior="dime" >
+			<column name="locationID" prior="LocationID" type="BIGINT" jt="-5" mandatory="y" />
+			<column name="arrestBorough" type="CHAR" length="1" jt="1" />
+			<column name="latitude" type="DECIMAL" jt="3" />
+			<column name="longitude" type="DECIMAL" jt="3" />
+			<index name="pk_dim_location" unique="PRIMARY_KEY" >
+				<column name="locationID" />
+			</index>
+		</table>
+		<table name="dim_perpetrator" prior="perpetratorDim" >
+			<column name="perpetratorID" type="BIGINT" jt="-5" mandatory="y" />
+			<column name="ageGroup" type="VARCHAR" jt="12" />
+			<column name="sex" type="CHAR" length="1" jt="1" />
+			<column name="race" type="VARCHAR" jt="12" />
+			<index name="pk_perpetratorDim" unique="PRIMARY_KEY" >
+				<column name="perpetratorID" />
+			</index>
+		</table>
+		<table name="facts_nypd_arrests" prior="facts_NYPDarrests" >
+			<column name="factID" type="BIGINT" jt="-5" mandatory="y" />
+			<column name="locationID" type="BIGINT" jt="-5" />
+			<column name="arrestID" type="BIGINT" jt="-5" />
+			<column name="perpetratorID" type="BIGINT" jt="-5" />
+			<column name="arrestDate" type="BIGINT" jt="-5" />
+			<index name="pk_facts_nypd_arrests" unique="PRIMARY_KEY" >
+				<column name="factID" />
+			</index>
+			<index name="unq_locationID" unique="UNIQUE_INDEX" >
+				<column name="locationID" />
+			</index>
+			<index name="unq_arrestID" unique="UNIQUE_INDEX" >
+				<column name="arrestID" />
+			</index>
+			<index name="unq_arrestDate" unique="UNIQUE_INDEX" >
+				<column name="arrestDate" />
+			</index>
+			<index name="unq_perpetratorID" unique="UNIQUE_INDEX" >
+				<column name="perpetratorID" />
+			</index>
+			<fk name="fk_facts_nypd_arrests_dim_location" virtual="y" to_schema="nypd_arrest_dw_lgl.INSTANCE" to_table="dim_location" type="NonIdentifying" mandatory="n" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="locationID" pk="locationID" />
+			</fk>
+			<fk name="fk_facts_nypd_arrests_dim_arrest" virtual="y" to_schema="nypd_arrest_dw_lgl.INSTANCE" to_table="dim_arrest" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="arrestID" pk="arrestID" />
+			</fk>
+			<fk name="fk_facts_nypd_arrests_perpetratorDim" virtual="y" to_schema="nypd_arrest_dw_lgl.INSTANCE" to_table="dim_perpetrator" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="perpetratorID" pk="perpetratorID" />
+			</fk>
+			<fk name="fk_facts_nypd_arrests_dim_date" virtual="y" to_schema="nypd_arrest_dw_lgl.INSTANCE" to_table="dim_date" type="NonIdentifying" mandatory="n" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="arrestDate" pk="date_id" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-1719" show_relation="columns" >
+		<entity schema="nypd_arrest_dw_lgl.INSTANCE" name="dim_arrest" color="C1D8EE" x="544" y="272" />
+		<entity schema="nypd_arrest_dw_lgl.INSTANCE" name="dim_date" color="C1D8EE" x="68" y="340" />
+		<entity schema="nypd_arrest_dw_lgl.INSTANCE" name="dim_location" color="C1D8EE" x="272" y="221" />
+		<entity schema="nypd_arrest_dw_lgl.INSTANCE" name="dim_perpetrator" color="C1D8EE" x="578" y="476" />
+		<entity schema="nypd_arrest_dw_lgl.INSTANCE" name="facts_nypd_arrests" color="C1D8EE" x="340" y="459" />
+		<callout x="51" y="51" pointer="Round" >
+			<comment><![CDATA[This is a layout - a diagram with tools.
+- Create new entities by right-clicking the layout. 
+- Double-click entity headers to edit.
+- For a better understanding of the schema, create multiple layouts.
+- Deploy the model into the database by converting it first to the physical design.]]></comment>
+		</callout>
+	</layout>
+</project>
