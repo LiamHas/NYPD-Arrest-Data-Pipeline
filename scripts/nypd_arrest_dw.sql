@@ -1,52 +1,50 @@
-CREATE SCHEMA INSTANCE;
+CREATE SCHEMA IF NOT EXISTS "nypd_arrest";
 
-CREATE TABLE nypd_arrest_dw_lgl.INSTANCE.dim_arrest ( 
-	arrestID int64  ,
-	offenseCategory string  ,
-	offenseDescription string  ,
-	offenseLevel string  ,
-	arrestPrecinct int64  
+CREATE  TABLE "nypd_arrest".dim_arrest ( 
+	arrestid             BIGINT    ,
+	offensecategory      VARCHAR    ,
+	offensedetail        VARCHAR    ,
+	offenselevel         CHAR(1)    ,
+	arrestprecinct       INT    ,
+	perpagegroup         VARCHAR    ,
+	perpsex              CHAR(1)    ,
+	perprace             VARCHAR    ,
+	CONSTRAINT pk_arrestid UNIQUE ( arrestid ) ,
+	CONSTRAINT pk_arrestid_001 UNIQUE ( arrestid ) 
  );
 
-CREATE TABLE nypd_arrest_dw_lgl.INSTANCE.dim_date ( 
-	date_id int64 NOT NULL  ,
-	year int64  ,
-	quarter int64  ,
-	monthNumber int64  ,
-	monthName string  ,
-	weekOfMonth int64  ,
-	weekOfYear int64  ,
-	dayName string  ,
-	dayNumber int64  ,
-	dateIsoformat datetime  
+CREATE  TABLE "nypd_arrest".dim_date ( 
+	dateid               BIGINT  NOT NULL  ,
+	"year"               INT    ,
+	quarter              INT    ,
+	monthnumber          INT    ,
+	monthname            VARCHAR(100)    ,
+	weekofmonth          INT    ,
+	weekofyear           INT    ,
+	dayname              VARCHAR(100)    ,
+	daynumber            INT    ,
+	dateisoformat        DATETIME    ,
+	CONSTRAINT pk_dim_date PRIMARY KEY ( dateid )
  );
 
-ALTER TABLE nypd_arrest_dw_lgl.INSTANCE.dim_date ADD PRIMARY KEY ( date_id )  NOT ENFORCED;
-
-CREATE TABLE nypd_arrest_dw_lgl.INSTANCE.dim_location ( 
-	locationID int64 NOT NULL  ,
-	arrestBorough string  ,
-	latitude numeric  ,
-	longitude numeric  
+CREATE  TABLE "nypd_arrest".dim_location ( 
+	locationid           BIGINT  NOT NULL  ,
+	arrestborough        CHAR(1)    ,
+	latitude             DECIMAL    ,
+	longitude            DECIMAL    ,
+	CONSTRAINT pk_dim_location PRIMARY KEY ( locationid )
  );
 
-ALTER TABLE nypd_arrest_dw_lgl.INSTANCE.dim_location ADD PRIMARY KEY ( locationID )  NOT ENFORCED;
-
-CREATE TABLE nypd_arrest_dw_lgl.INSTANCE.dim_perpetrator ( 
-	perpetratorID int64 NOT NULL  ,
-	ageGroup string  ,
-	sex string  ,
-	race string  
+CREATE  TABLE "nypd_arrest".facts_nypd_arrests ( 
+	factid               BIGINT  NOT NULL  ,
+	locationid           BIGINT    ,
+	arrestid             BIGINT    ,
+	arrestdate           BIGINT    ,
+	CONSTRAINT pk_facts_nypd_arrests PRIMARY KEY ( factid )
  );
 
-ALTER TABLE nypd_arrest_dw_lgl.INSTANCE.dim_perpetrator ADD PRIMARY KEY ( perpetratorID )  NOT ENFORCED;
+CREATE UNIQUE INDEX unq_locationid ON "nypd_arrest".facts_nypd_arrests ( locationid );
 
-CREATE TABLE nypd_arrest_dw_lgl.INSTANCE.facts_nypd_arrests ( 
-	factID int64 NOT NULL  ,
-	locationID int64  ,
-	arrestID int64  ,
-	perpetratorID int64  ,
-	arrestDate int64  
- );
+CREATE UNIQUE INDEX unq_arrestid ON "nypd_arrest".facts_nypd_arrests ( arrestid );
 
-ALTER TABLE nypd_arrest_dw_lgl.INSTANCE.facts_nypd_arrests ADD PRIMARY KEY ( factID )  NOT ENFORCED;
+CREATE UNIQUE INDEX unq_arrestdate ON "nypd_arrest".facts_nypd_arrests ( arrestdate );
