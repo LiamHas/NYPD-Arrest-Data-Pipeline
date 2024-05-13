@@ -22,8 +22,8 @@ In case the link above is not working, I have also provided screenshots of all t
 
 For this project I utilized Dbschema, a database schema design tool, in order to develop a dimensional model and set up the necessary tables, attributes, and relationships. A snowflake schema was used for this project. It is defined by the arrest, location, and date dimensions with a facts dimensional table in the center connecting them all. I wrote the relevant extract, transform, and load functions in Google Collab and Visual Studio Code. The data for this project was stored in Azure Blob, Microsoft’s scalable cloud storage platform. The database used was postgreSQL. For the pipeline methodology I utilized extract, transform, load,  method (ETL) given the relatively small size of the dataset. PostgreSQL was used as the database. Finally, Tableau was used for generating visualizations.
 
-Database Management: DbSchema, DataGrip, PostgreSQL
-Programming: Python, SQL
-Development & Data Engineering: Visual Studio Code
-Cloud Storage: Azure Blob
+Database Management: DbSchema, DataGrip, PostgreSQL\
+Programming: Python, SQL\
+Development & Data Engineering: Visual Studio Code\
+Cloud Storage: Azure Blob\
 Data Visualization and Analysis: Tableau
