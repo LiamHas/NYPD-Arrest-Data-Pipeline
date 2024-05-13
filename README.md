@@ -12,13 +12,15 @@ The data for this project comes from NYC OpenData. It consists of evert arrest m
 
 [Data Source Link](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc/about_data)
 
-## Storage
+## Visualizations
 
-Data for this project was stored in Azure Blob cloud service. The database used was postgreSQL.
+[Tableau Cloud Link](https://prod-useast-b.online.tableau.com/t/liamhasandjekaj895fd24ab0/views/NYPDArrestDataWorkbook/ArrestTotalsbyPerpAgeGroupforEachDayoftheWeek)
+
+In case the link above is not working I have also provided screehnshots of all the visualizations in the docs folder.
 
 ## Tools, Methods, Storage
 
-For this project I utilized Dbschema, a database schema design tool, in order to develop a dimensional model and set up the necessary tables, attributes, and relationships. A snowflake schema was used for this project. It is defined by the arrest, location, and date dimensions with a facts dimensional table in the center connecting them all. I wrote the relevant extract, transform, and load functions in Google Collab and Visual Studio Code. The data for this project was stored in Azure Blob, Microsoft’s scalable cloud storage platform. For the pipeline methodology I utilized extract, transform, load,  method (ETL) given the relatively small size of the dataset. PostgreSQL was used as the database. Finally, Tableau was used for generating visualizations.
+For this project I utilized Dbschema, a database schema design tool, in order to develop a dimensional model and set up the necessary tables, attributes, and relationships. A snowflake schema was used for this project. It is defined by the arrest, location, and date dimensions with a facts dimensional table in the center connecting them all. I wrote the relevant extract, transform, and load functions in Google Collab and Visual Studio Code. The data for this project was stored in Azure Blob, Microsoft’s scalable cloud storage platform. The database used was postgreSQL. For the pipeline methodology I utilized extract, transform, load,  method (ETL) given the relatively small size of the dataset. PostgreSQL was used as the database. Finally, Tableau was used for generating visualizations.
 
 Database Management: DbSchema, DataGrip, PostgreSQL
 Programming: Python, SQL
