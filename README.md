@@ -16,7 +16,7 @@ The data for this project comes from NYC OpenData. It consists of evert arrest m
 
 [Tableau Cloud Link](https://prod-useast-b.online.tableau.com/t/liamhasandjekaj895fd24ab0/views/NYPDArrestDataWorkbook/ArrestTotalsbyPerpAgeGroupforEachDayoftheWeek)
 
-In case the link above is not working I have also provided screehnshots of all the visualizations in the docs folder.
+In case the link above is not working, I have also provided screenshots of all the visualizations in the docs folder.
 
 ## Tools, Methods, Storage
 
