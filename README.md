@@ -14,7 +14,7 @@ The data for this project comes from NYC OpenData. It consists of every arrest m
 
 ## Visualizations
 
-In case the link above is not working, I have also provided screenshots of all the visualizations in the docs folder.
+In case the link above is not working, I have also provided the Tableau workbook and screenshots of all the visualizations in the docs folder.
 
 [Tableau Cloud Link](https://prod-useast-b.online.tableau.com/#/site/liamhasandjekaj895fd24ab0/workbooks/1568901?:origin=card_share_link)
 
