@@ -4,11 +4,11 @@
 
 ## Project Overview
 
-The aim of this project is to develop a data pipeline that extracts data from an external source, performs the necessary transformations, and loads the data into a data warehouse for analysis. The relevant dataset is related to NYPD arrests within the first quarter of 2024. Through this data pipeline I am hoping to be able to analyze the relevant dataset, find interesting patterns, and construct visualizations using a business intelligence software.
+The aim of this project is to develop a data pipeline that extracts data from an external source, performs the necessary data transformations, and loads the data into a data warehouse for analysis. The relevant dataset is related to NYPD arrests within the first quarter of 2024. Through this data pipeline I am hoping to be able to analyze the relevant dataset, find interesting patterns, and construct useful visualizations using a business intelligence software.
 
 ## Data Source
 
-The data for this project comes from NYC OpenData. It consists of evert arrest made by the NYPD within NYC from 1/1/2024 to 3/31/2024. This data is manually extracted every quarter and reviewed by the Office of Management Analysis and Planning. The records in this dataset represent individual arrests and include information relating to the perpetrators demographics, the location of the arrest, and the nature of the offense. For more information on the individual data fields, please see the docs folder. The original data dictionary provided from NYC Open Data as well as my own data dictionary / data mapping can be found there. CSV files containing the relevant dimensional tables can also be found in the docs folder.
+The data for this project comes from NYC OpenData. It consists of every arrest made by the NYPD within NYC from 1/1/2024 to 3/31/2024. This data is manually extracted every quarter and reviewed by the Office of Management Analysis and Planning. The records in this dataset represent individual arrests and include information relating to the perpetrators' demographics, the location of the arrest, and the nature of the offense. For more information on the individual data fields, please see the docs folder. The original data dictionary provided from NYC Open Data as well as my own data dictionary / data mapping can be found there. CSV files containing the relevant dimensional tables can also be found in the docs folder.
 
 [Data Source Link](https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc/about_data)
 
